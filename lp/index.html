@@ -487,31 +487,8 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
             <input id="h-phone" type="tel" name="phone" required autocomplete="tel" placeholder="(000) 000-0000">
           </div>
           <div class="field">
-            <label for="h-email">Email</label>
-            <input id="h-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com">
-          </div>
-          <div class="field">
             <label for="h-zip">ZIP Code</label>
             <input id="h-zip" type="text" name="zip" required autocomplete="postal-code" inputmode="numeric" placeholder="07011">
-          </div>
-          <div class="field">
-            <label for="h-project">Project Type</label>
-            <select id="h-project" name="project_type">
-              <option>Kitchen Countertops</option>
-              <option>Bathroom Vanity</option>
-              <option>Commercial Project</option>
-              <option>Other</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="h-stone">Preferred Material</label>
-            <select id="h-stone" name="material">
-              <option>Quartz</option>
-              <option>Granite</option>
-              <option>Marble</option>
-              <option>Quartzite</option>
-              <option>Not Sure</option>
-            </select>
           </div>
           <div class="field">
             <label for="h-msg">Message / Project Details <em>(optional)</em></label>
@@ -986,8 +963,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
     el.addEventListener('click', function(){
       var field = document.getElementById('package');
       if (field) field.value = el.getAttribute('data-package');
-      var material = document.getElementById('h-stone');
-      if (material) material.value = 'Quartz';
     });
   });
 
