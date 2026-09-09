@@ -12,8 +12,18 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
 
-<!-- GTM: paste the container snippet here. Fire the Google Ads conversion on
-     this page view — Web3Forms only redirects here after a form is accepted. -->
+<!-- Web3Forms only redirects here after a form is accepted, so this page view
+     is the confirmed lead. The dataLayer push must sit BEFORE the GTM snippet
+     so the event is already in the queue when the container boots. -->
+<script>window.dataLayer=window.dataLayer||[];dataLayer.push({'event':'lead_submission'});</script>
+
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NNMVTTCG');</script>
+<!-- End Google Tag Manager -->
 
 <style>
 :root{--quarry:#14171A;--chalk:#F2F0EC;--brass:#C8912F;--brass-soft:#E2B866;
@@ -54,6 +64,10 @@ footer a:hover{color:var(--brass-soft);border-color:var(--brass-soft)}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNMVTTCG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <header>
   <img src="/img/logo-white.png" alt="Stone Elegance Marble &amp; Granite" width="192" height="43">

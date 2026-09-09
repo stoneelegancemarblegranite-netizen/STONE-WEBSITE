@@ -15,7 +15,13 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@500;600;700;800&family=Roboto:wght@400;500;700&display=swap" rel="stylesheet">
 
-<!-- GTM: paste the Google Tag Manager container snippet here -->
+<!-- Google Tag Manager -->
+<script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+})(window,document,'script','dataLayer','GTM-NNMVTTCG');</script>
+<!-- End Google Tag Manager -->
 
 <style>
 /* =========================================================================
@@ -133,7 +139,9 @@ h4{font-size:17px;font-weight:600}
 .hero::after{content:"";position:absolute;inset:0;
   background:linear-gradient(180deg,rgba(26,28,23,.86),rgba(26,28,23,.78))}
 .hero .container{position:relative;z-index:2}
-.hero h1{color:#fff;font-size:30px;margin-bottom:16px}
+.hero h1{color:#fff;font-size:30px;margin-bottom:14px}
+.hero-kicker{display:block;margin-bottom:12px;font-family:Poppins,sans-serif;font-size:13px;
+  font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold-light)}
 .hero-sub{font-size:16.5px;color:rgba(255,255,255,.85);margin-bottom:0}
 .stars{display:flex;align-items:center;gap:10px;margin-bottom:20px;flex-wrap:wrap;
   font-size:14px;color:rgba(255,255,255,.85)}
@@ -150,6 +158,12 @@ h4{font-size:17px;font-weight:600}
 .formcard-head{background:var(--green);color:#fff;padding:20px 24px;text-align:center}
 .formcard-head h3{color:#fff;margin:0 0 4px;font-size:20px}
 .formcard-head p{margin:0;font-size:13.5px;color:rgba(255,255,255,.82)}
+.formcard{scroll-margin-top:100px}
+.trustchips{display:grid;grid-template-columns:repeat(2,1fr);gap:8px 14px;
+  padding:16px 24px;background:#F7F7F4;border-bottom:1px solid var(--border)}
+.trustchips span{display:flex;align-items:center;gap:8px;
+  font-family:Poppins,sans-serif;font-size:12.5px;font-weight:600;color:var(--heading);line-height:1.3}
+.trustchips svg{flex:0 0 auto;width:15px;height:15px;color:var(--green)}
 .formcard-body{padding:24px}
 .field{margin-bottom:14px}
 .field label{display:block;margin-bottom:6px;font-family:Poppins,sans-serif;
@@ -231,20 +245,40 @@ h4{font-size:17px;font-weight:600}
 .fineprint{max-width:760px;margin:32px auto 0;text-align:center;font-size:13px;line-height:1.65;
   color:rgba(255,255,255,.55)}
 
+/* kitchen ---------------------------------------------------------------- */
+.kitchen{display:grid;gap:32px;align-items:center}
+.kitchen-photo{border-radius:var(--radius);overflow:hidden;box-shadow:var(--shadow-lg)}
+.kitchen-photo img{width:100%;aspect-ratio:4/3;object-fit:cover}
+.kitchen h2{margin-bottom:14px}
+.kitchen .label{display:block;margin-bottom:10px;font-family:Poppins,sans-serif;font-size:13px;
+  font-weight:600;letter-spacing:2px;text-transform:uppercase;color:var(--gold)}
+.kitchen-list{list-style:none;margin:22px 0 28px;padding:0;display:grid;gap:12px}
+.kitchen-list li{display:flex;align-items:flex-start;gap:11px;font-size:15.5px;color:var(--text)}
+.kitchen-list svg{flex:0 0 auto;width:19px;height:19px;margin-top:4px;color:var(--green)}
+
 /* gallery -------------------------------------------------------------- */
-.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:12px}
-.gallery a{display:block;overflow:hidden;border-radius:var(--radius);aspect-ratio:1}
+.gallery{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.gallery figure{margin:0;background:#fff;border-radius:var(--radius);overflow:hidden;
+  box-shadow:var(--shadow);transition:transform .3s ease,box-shadow .3s ease}
+.gallery a:hover figure{transform:translateY(-5px);box-shadow:var(--shadow-lg)}
+.gallery .ph{overflow:hidden;aspect-ratio:1}
 .gallery img{width:100%;height:100%;object-fit:cover;transition:transform .6s ease}
 .gallery a:hover img{transform:scale(1.09)}
+.gallery figcaption{padding:13px 12px 15px;text-align:center;line-height:1.4;
+  font-family:Poppins,sans-serif;font-size:13px;font-weight:600;color:var(--heading)}
 
 /* steps ---------------------------------------------------------------- */
-.steps{display:grid;gap:34px;counter-reset:step}
-.step{text-align:center}
-.step .num{counter-increment:step;width:74px;height:74px;margin:0 auto 20px;border-radius:50%;
+.steps{display:grid;gap:52px 34px;counter-reset:step;position:relative;margin-top:56px}
+.step{position:relative;text-align:center;background:#fff;border:1px solid var(--border);
+  border-radius:var(--radius);box-shadow:var(--shadow);padding:44px 26px 30px;
+  transition:transform .3s ease,box-shadow .3s ease}
+.step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
+.step .num{counter-increment:step;width:74px;height:74px;margin:-70px auto 20px;border-radius:50%;
   background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;
-  font-family:Poppins,sans-serif;font-size:28px;font-weight:800;
+  font-family:Poppins,sans-serif;font-size:28px;font-weight:800;border:5px solid var(--grey);
   box-shadow:0 8px 22px rgba(200,145,47,.35)}
 .step .num::before{content:"0" counter(step)}
+.step h3{font-size:19px;margin-bottom:10px}
 .step p{font-size:15px;color:var(--muted);margin:0}
 
 /* faq ------------------------------------------------------------------ */
@@ -323,6 +357,7 @@ h4{font-size:17px;font-weight:600}
   .steps{grid-template-columns:repeat(3,1fr)}
   .pricing{grid-template-columns:repeat(3,1fr)}
   .foot-grid{grid-template-columns:repeat(3,1fr)}
+  .kitchen{grid-template-columns:1fr 1fr;gap:50px}
 }
 @media (min-width:992px){
   :root{--stickybar:0px}
@@ -347,6 +382,10 @@ h4{font-size:17px;font-weight:600}
 </style>
 </head>
 <body>
+<!-- Google Tag Manager (noscript) -->
+<noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-NNMVTTCG"
+height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+<!-- End Google Tag Manager (noscript) -->
 
 <!-- top bar ============================================================ -->
 <div class="topbar">
@@ -363,7 +402,7 @@ h4{font-size:17px;font-weight:600}
     <img src="/img/logo-dark.png" alt="Stone Elegance Marble &amp; Granite" width="180" height="45" fetchpriority="high">
     <div class="hd-actions">
       <a class="hd-phone" href="tel:+18624645987">(862) 464-5987<small>Speak with an installer</small></a>
-      <a class="btn btn-gold" href="#estimate">Free estimate</a>
+      <a class="btn btn-gold" href="#request-estimate">Free estimate</a>
     </div>
   </div>
 </header>
@@ -376,16 +415,17 @@ h4{font-size:17px;font-weight:600}
         <i>&#9733;&#9733;&#9733;&#9733;&#9733;</i>
         <a href="https://www.google.com/maps/place/Stone+Elegance+Marble+%26+Granite/data=!4m2!3m1!1s0x0:0x54cea5bd7432807f?sa=X&amp;ved=1t:2428&amp;ictx=111" target="_blank" rel="noopener">Rated by homeowners on Google</a>
       </div>
+      <span class="hero-kicker">Custom Quartz, Granite &amp; Marble Countertops</span>
       <h1>Precision-cut countertops guaranteed to fit right and last a lifetime.</h1>
-      <p class="hero-sub">Stone Elegance installs premium granite, marble, quartz, and quartzite countertops, backed by a 10-year track record, fully insured crews, and a clear labor warranty across NJ, NY, and PA.</p>
+      <p class="hero-sub">Expert fabrication and installation for kitchens and bathrooms across NJ, NY and PA &mdash; templating, fabrication, install and cleanup handled by one insured team.</p>
       <div class="hero-badges">
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/><path d="m9 12 2 2 4-4"/></svg>
           <span>Fully licensed &amp; insured crews</span>
         </div>
         <div>
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
-          <span>Installed in a single day</span>
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m3 10 9-7 9 7v10a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"/><path d="M9 22V12h6v10"/></svg>
+          <span>Kitchen &amp; bathroom countertops</span>
         </div>
         <div>
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>
@@ -398,27 +438,33 @@ h4{font-size:17px;font-weight:600}
       </div>
     </div>
 
-    <div class="formcard">
+    <div class="formcard" id="request-estimate">
       <div class="formcard-head">
-        <h3>Get your free estimate</h3>
-        <p>We reply within one business day</p>
+        <h3>Request Your Free Estimate</h3>
+        <p>We reply within one business day &mdash; no obligation</p>
+      </div>
+      <div class="trustchips">
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>10+ Years Experience</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Professional Fabrication</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>1-Day Installation</span>
+        <span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg>Free Estimates</span>
       </div>
       <div class="formcard-body">
         <form id="form01" method="POST" action="https://api.web3forms.com/submit">
           <input type="hidden" name="access_key" value="a00087cd-f5f6-4ad5-9b3d-2bffc4d6e40b">
           <input type="hidden" name="redirect" value="https://stonelegance.com/thanks/">
           <input type="hidden" name="from_name" value="Stone Elegance Website">
-          <input type="hidden" name="subject" value="New estimate request — LP (hero form)">
-          <input type="hidden" name="source" value="LP — Quartz promotion (hero)">
+          <input type="hidden" name="subject" value="New estimate request — Google Ads LP">
+          <input type="hidden" name="source" value="LP — Google Ads (main form)">
           <input type="hidden" name="package" id="package" value="">
           <div class="hp" aria-hidden="true"><label>Leave empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
 
           <div class="field">
-            <label for="h-name">Full name</label>
+            <label for="h-name">Full Name</label>
             <input id="h-name" type="text" name="name" required autocomplete="name" placeholder="Full name">
           </div>
           <div class="field">
-            <label for="h-phone">Phone</label>
+            <label for="h-phone">Phone Number</label>
             <input id="h-phone" type="tel" name="phone" required autocomplete="tel" placeholder="(000) 000-0000">
           </div>
           <div class="field">
@@ -426,20 +472,33 @@ h4{font-size:17px;font-weight:600}
             <input id="h-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com">
           </div>
           <div class="field">
-            <label for="h-city">City or ZIP</label>
-            <input id="h-city" type="text" name="city" required autocomplete="postal-code" placeholder="Clifton, 07011">
+            <label for="h-zip">ZIP Code</label>
+            <input id="h-zip" type="text" name="zip" required autocomplete="postal-code" inputmode="numeric" placeholder="07011">
           </div>
           <div class="field">
-            <label for="h-stone">Stone type</label>
-            <select id="h-stone" name="stone">
-              <option>Not sure yet</option>
+            <label for="h-project">Project Type</label>
+            <select id="h-project" name="project_type">
+              <option>Kitchen Countertops</option>
+              <option>Bathroom Vanity</option>
+              <option>Commercial Project</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="h-stone">Preferred Material</label>
+            <select id="h-stone" name="material">
               <option>Quartz</option>
               <option>Granite</option>
               <option>Marble</option>
               <option>Quartzite</option>
+              <option>Not Sure</option>
             </select>
           </div>
-          <button class="btn btn-block" type="submit">Get my free estimate</button>
+          <div class="field">
+            <label for="h-msg">Message / Project Details <em>(optional)</em></label>
+            <textarea id="h-msg" name="message" rows="3" placeholder="Square footage, edge profile, timeline..."></textarea>
+          </div>
+          <button class="btn btn-block" type="submit">GET YOUR FREE ESTIMATE</button>
           <p class="formnote">
             <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
             Your details are used only to prepare your quote.
@@ -503,8 +562,7 @@ h4{font-size:17px;font-weight:600}
       </div>
     </div>
     <div class="btn-row reveal">
-      <a class="btn" href="#estimate">Partner with us on your next project</a>
-      <a class="btn btn-outline-dark" href="https://www.google.com/maps/place/Stone+Elegance+Marble+%26+Granite/data=!4m2!3m1!1s0x0:0x54cea5bd7432807f?sa=X&amp;ved=1t:2428&amp;ictx=111" target="_blank" rel="noopener">Read our Google reviews</a>
+      <a class="btn" href="#request-estimate">Request your free estimate</a>
     </div>
   </div>
 </section>
@@ -518,6 +576,13 @@ h4{font-size:17px;font-weight:600}
       <div class="rule"></div>
     </div>
     <div class="cards">
+      <div class="card reveal">
+        <div class="card-img"><img src="/img/p20.jpg" alt="Quartz countertop fabricated and installed by Stone Elegance" loading="lazy" width="600" height="450"></div>
+        <div class="card-body">
+          <h3>Quartz</h3>
+          <p>Non-porous stain resistance with color uniformity for modern, low-maintenance kitchens.</p>
+        </div>
+      </div>
       <div class="card reveal">
         <div class="card-img"><img src="/img/p12.jpg" alt="Granite countertop fabricated and installed by Stone Elegance" loading="lazy" width="600" height="450"></div>
         <div class="card-body">
@@ -533,13 +598,6 @@ h4{font-size:17px;font-weight:600}
         </div>
       </div>
       <div class="card reveal">
-        <div class="card-img"><img src="/img/p20.jpg" alt="Quartz countertop fabricated and installed by Stone Elegance" loading="lazy" width="600" height="450"></div>
-        <div class="card-body">
-          <h3>Quartz</h3>
-          <p>Non-porous stain resistance with color uniformity for modern, low-maintenance kitchens.</p>
-        </div>
-      </div>
-      <div class="card reveal">
         <div class="card-img"><img src="/img/p16.jpg" alt="Quartzite countertop fabricated and installed by Stone Elegance" loading="lazy" width="600" height="450"></div>
         <div class="card-body">
           <h3>Quartzite</h3>
@@ -548,7 +606,30 @@ h4{font-size:17px;font-weight:600}
       </div>
     </div>
     <div class="btn-row reveal">
-      <a class="btn" href="#estimate">Find the right material for your budget</a>
+      <a class="btn" href="#request-estimate">Find the right material for your budget</a>
+    </div>
+  </div>
+</section>
+
+<!-- kitchen countertops ================================================ -->
+<section class="sec" id="kitchen-countertops">
+  <div class="container">
+    <div class="kitchen">
+      <div class="kitchen-photo reveal">
+        <img src="/img/p01.jpg" alt="Custom quartz kitchen countertop installed by Stone Elegance in New Jersey" loading="lazy" width="800" height="600">
+      </div>
+      <div class="reveal">
+        <span class="label">Kitchen countertops</span>
+        <h2>Custom Kitchen Countertops Designed For Your Home</h2>
+        <p>Transform your kitchen with premium quartz, granite and marble countertops fabricated specifically for your space.</p>
+        <ul class="kitchen-list">
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Kitchen countertop replacement over your existing cabinets</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Islands, waterfall edges, backsplashes and undermount sink cutouts</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Digital laser templating for a seam-tight, cabinet-exact fit</span></li>
+          <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Old countertop removal, single-day install and full cleanup</span></li>
+        </ul>
+        <a class="btn" href="#request-estimate">Get your free kitchen estimate</a>
+      </div>
     </div>
   </div>
 </section>
@@ -575,7 +656,7 @@ h4{font-size:17px;font-weight:600}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Insured install &amp; full cleanup</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Written labor warranty</span></li>
         </ul>
-        <a class="btn btn-outline-dark btn-block" href="#estimate" data-package="Tier 1 — up to 35 sq ft — $1,755">Reserve this package</a>
+        <a class="btn btn-outline-dark btn-block" href="#request-estimate" data-package="Tier 1 — up to 35 sq ft — $1,755">Reserve this package</a>
       </div>
 
       <div class="plan plan-featured reveal">
@@ -590,7 +671,7 @@ h4{font-size:17px;font-weight:600}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Insured install &amp; full cleanup</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Written labor warranty</span></li>
         </ul>
-        <a class="btn btn-gold btn-block" href="#estimate" data-package="Tier 2 — up to 45 sq ft — $1,975">Reserve this package</a>
+        <a class="btn btn-gold btn-block" href="#request-estimate" data-package="Tier 2 — up to 45 sq ft — $1,975">Reserve this package</a>
       </div>
 
       <div class="plan reveal">
@@ -604,12 +685,12 @@ h4{font-size:17px;font-weight:600}
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Insured install &amp; full cleanup</span></li>
           <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Written labor warranty</span></li>
         </ul>
-        <a class="btn btn-outline-dark btn-block" href="#estimate" data-package="Tier 3 — up to 55 sq ft — $2,795">Reserve this package</a>
+        <a class="btn btn-outline-dark btn-block" href="#request-estimate" data-package="Tier 3 — up to 55 sq ft — $2,795">Reserve this package</a>
       </div>
     </div>
 
     <div class="btn-row reveal">
-      <a class="btn btn-gold" href="#estimate">Reserve your quartz slab today</a>
+      <a class="btn btn-gold" href="#request-estimate">Reserve your quartz slab today</a>
     </div>
 
     <p class="fineprint">Package pricing applies to standard quartz selections within our service area. Slabs are reserved in the order requests come in. Your final quote is confirmed in writing before any work begins &mdash; no hidden fees.</p>
@@ -625,15 +706,33 @@ h4{font-size:17px;font-weight:600}
       <div class="rule"></div>
     </div>
     <div class="gallery reveal">
-      <a href="#estimate"><img src="/img/p01.jpg" alt="Quartz island installed in a Clifton, NJ kitchen" loading="lazy" width="400" height="400"></a>
-      <a href="#estimate"><img src="/img/p13.jpg" alt="Waterfall edge on a finished island" loading="lazy" width="400" height="400"></a>
-      <a href="#estimate"><img src="/img/p07.jpg" alt="Polished stone counter with a mitred edge" loading="lazy" width="400" height="400"></a>
-      <a href="#estimate"><img src="/img/p19.jpg" alt="Calacatta-style island under pendant lights" loading="lazy" width="400" height="400"></a>
-      <a href="#estimate"><img src="/img/p03.jpg" alt="White quartz counter in a seamless run" loading="lazy" width="400" height="400"></a>
-      <a href="#estimate"><img src="/img/p22.jpg" alt="Dramatic veining across a long counter run" loading="lazy" width="400" height="400"></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p01.jpg" alt="Quartz kitchen countertop installation in Clifton, NJ" loading="lazy" width="400" height="400"></div>
+        <figcaption>Quartz Kitchen Countertop Installation</figcaption>
+      </figure></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p13.jpg" alt="Waterfall edge island fabricated by Stone Elegance" loading="lazy" width="400" height="400"></div>
+        <figcaption>Waterfall Edge Kitchen Island Project</figcaption>
+      </figure></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p07.jpg" alt="Custom granite countertop project with a mitred edge" loading="lazy" width="400" height="400"></div>
+        <figcaption>Custom Granite Countertop Project</figcaption>
+      </figure></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p19.jpg" alt="Luxury marble countertop installation under pendant lights" loading="lazy" width="400" height="400"></div>
+        <figcaption>Luxury Marble Countertop Installation</figcaption>
+      </figure></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p03.jpg" alt="White quartz countertop replacement in a seamless run" loading="lazy" width="400" height="400"></div>
+        <figcaption>White Quartz Countertop Replacement</figcaption>
+      </figure></a>
+      <a href="#request-estimate"><figure>
+        <div class="ph"><img src="/img/p22.jpg" alt="Quartzite countertop fabrication with dramatic veining" loading="lazy" width="400" height="400"></div>
+        <figcaption>Quartzite Countertop Fabrication &amp; Install</figcaption>
+      </figure></a>
     </div>
     <div class="btn-row reveal">
-      <a class="btn" href="#estimate">Start your custom design consultation</a>
+      <a class="btn" href="#request-estimate">Get your free estimate</a>
     </div>
   </div>
 </section>
@@ -649,22 +748,22 @@ h4{font-size:17px;font-weight:600}
     <div class="steps">
       <div class="step reveal">
         <div class="num"></div>
-        <h3>Free estimate</h3>
+        <h3>Free Estimate</h3>
         <p>Send us your rough measurements or schedule an on-site visit to receive a clear price quote with zero hidden fees.</p>
       </div>
       <div class="step reveal">
         <div class="num"></div>
-        <h3>Slab selection &amp; digital templating</h3>
+        <h3>Stone Selection &amp; Digital Measurement</h3>
         <p>Select your natural or engineered stone slab and let our technicians capture exact laser measurements of your cabinets.</p>
       </div>
       <div class="step reveal">
         <div class="num"></div>
-        <h3>Precision fabrication &amp; insured install</h3>
+        <h3>Precision Fabrication &amp; Professional Installation</h3>
         <p>All heavy stone cutting and edge polishing happen off-site so your home stays clean. Our insured crew fits your counters, cleans up, and provides your labor warranty.</p>
       </div>
     </div>
     <div class="btn-row reveal">
-      <a class="btn" href="#estimate">Start step 1</a>
+      <a class="btn" href="#request-estimate">Start with your free estimate</a>
     </div>
   </div>
 </section>
@@ -679,8 +778,24 @@ h4{font-size:17px;font-weight:600}
     </div>
     <div class="faq reveal">
       <details>
-        <summary>How fast can my project be completed?</summary>
-        <p>Most installations are finished within 5 to 7 business days following final digital measurements and slab selection.</p>
+        <summary>How much does a quartz countertop installation cost?</summary>
+        <p>Our current quartz packages start at $1,755 installed for up to 35 sq ft, with the slab, fabrication and labor included. Final pricing depends on square footage, edge profile and cutouts &mdash; send your details and we return a written, itemised quote within one business day.</p>
+      </details>
+      <details>
+        <summary>How long does countertop installation take?</summary>
+        <p>Installation itself is a single day. From digital measurement to finished install, most projects are completed in 5 to 7 business days.</p>
+      </details>
+      <details>
+        <summary>Do you remove old countertops?</summary>
+        <p>Yes. Removal and disposal of your existing countertops is handled by our crew on install day, with floors and cabinets protected and a full cleanup before we leave.</p>
+      </details>
+      <details>
+        <summary>Do you provide fabrication and installation?</summary>
+        <p>Both. We fabricate in our own Clifton, NJ shop and install with our own insured crew &mdash; templating, cutting, edge polishing and installation stay with one team, so nothing gets subcontracted out.</p>
+      </details>
+      <details>
+        <summary>What areas do you serve?</summary>
+        <p>We serve New Jersey, New York and Pennsylvania within roughly 50 miles of Clifton, NJ &mdash; including Passaic, Bergen, Essex, Hudson, Union and Morris counties, New York City, Rockland County and Eastern PA.</p>
       </details>
       <details>
         <summary>What does your warranty cover?</summary>
@@ -706,7 +821,7 @@ h4{font-size:17px;font-weight:600}
   <div class="container">
     <div class="head reveal">
       <span class="label">Get in touch</span>
-      <h2>Request your free estimate</h2>
+      <h2>Get your free countertop estimate</h2>
       <p>Tell us about the project and we come back with a clear, itemised price within one business day.</p>
       <div class="rule"></div>
     </div>
@@ -742,61 +857,24 @@ h4{font-size:17px;font-weight:600}
 
       <div class="formcard reveal">
         <div class="formcard-head">
-          <h3>Tell us about your project</h3>
+          <h3>Ready when you are</h3>
           <p>Free estimate in 24 hours &mdash; no obligation</p>
         </div>
-        <div class="formcard-body">
-          <form id="form02" method="POST" action="https://api.web3forms.com/submit">
-            <input type="hidden" name="access_key" value="a00087cd-f5f6-4ad5-9b3d-2bffc4d6e40b">
-            <input type="hidden" name="redirect" value="https://stonelegance.com/thanks/">
-            <input type="hidden" name="from_name" value="Stone Elegance Website">
-            <input type="hidden" name="subject" value="New estimate request — LP (bottom form)">
-            <input type="hidden" name="source" value="LP — Quartz promotion (bottom form)">
-            <input type="hidden" name="package" id="package2" value="">
-            <div class="hp" aria-hidden="true"><label>Leave empty<input type="checkbox" name="botcheck" tabindex="-1" autocomplete="off"></label></div>
-
-            <div class="field">
-              <label for="f-name">Full name</label>
-              <input id="f-name" type="text" name="name" required autocomplete="name" placeholder="Full name">
-            </div>
-            <div class="field">
-              <label for="f-phone">Phone</label>
-              <input id="f-phone" type="tel" name="phone" required autocomplete="tel" placeholder="(000) 000-0000">
-            </div>
-            <div class="field">
-              <label for="f-email">Email</label>
-              <input id="f-email" type="email" name="email" required autocomplete="email" placeholder="you@email.com">
-            </div>
-            <div class="field">
-              <label for="f-city">City or ZIP</label>
-              <input id="f-city" type="text" name="city" required autocomplete="postal-code" placeholder="Clifton, 07011">
-            </div>
-            <div class="field">
-              <label for="f-stone">Stone type</label>
-              <select id="f-stone" name="stone">
-                <option>Not sure yet</option>
-                <option>Quartz</option>
-                <option>Granite</option>
-                <option>Marble</option>
-                <option>Quartzite</option>
-              </select>
-            </div>
-            <div class="field">
-              <label for="f-sqft">Approximate square footage <em>(optional)</em></label>
-              <input id="f-sqft" type="text" name="sqft" placeholder="e.g. 45 sq ft">
-            </div>
-            <div class="field">
-              <label for="f-msg">Anything we should know? <em>(optional)</em></label>
-              <textarea id="f-msg" name="message" rows="4" placeholder="Kitchen, bath, edge profile, timeline..."></textarea>
-            </div>
-            <button class="btn btn-gold btn-block" type="submit">Get your free estimate in 24 hours</button>
-            <p class="formnote">We reply to every request within one business day.</p>
-          </form>
+        <div class="formcard-body" style="text-align:center">
+          <p style="color:var(--muted);font-size:15.5px">Send your project details through the form at the top of this page and we come back with a clear, itemised price within one business day. Prefer to talk it through? Call us and speak with an installer.</p>
+          <ul class="kitchen-list" style="margin:20px 0 24px;text-align:left">
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Free estimate, no obligation and no pressure</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Written price confirmed before any work begins</span></li>
+            <li><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 6 9 17l-5-5"/></svg><span>Fabrication and installation by one insured team</span></li>
+          </ul>
+          <a class="btn btn-gold btn-block" href="#request-estimate">GET YOUR FREE ESTIMATE</a>
+          <a class="btn btn-outline-dark btn-block" href="tel:+18624645987" style="margin-top:12px">Call (862) 464-5987</a>
         </div>
       </div>
     </div>
   </div>
 </section>
+
 
 <!-- footer ============================================================= -->
 <footer class="site-footer">
@@ -816,7 +894,7 @@ h4{font-size:17px;font-weight:600}
       <div>
         <h4>Ready to start?</h4>
         <p>Get a clear, itemised price within one business day.</p>
-        <a class="btn btn-gold" href="#estimate" style="margin-top:6px">Free estimate</a>
+        <a class="btn btn-gold" href="#request-estimate" style="margin-top:6px">Free estimate</a>
       </div>
     </div>
     <div class="legal">&copy; 2026 Stone Elegance Marble &amp; Granite. Licensed &amp; insured &mdash; NJ, NY and PA.<br>
@@ -830,7 +908,7 @@ h4{font-size:17px;font-weight:600}
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72c.13.96.36 1.9.7 2.81a2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45c.9.34 1.85.57 2.81.7A2 2 0 0 1 22 16.92z"/></svg>
     Call now
   </a>
-  <a class="quote" href="#estimate">
+  <a class="quote" href="#request-estimate">
     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><path d="M14 2v6h6"/><path d="M9 15h6M9 11h3"/></svg>
     Free estimate
   </a>
@@ -858,19 +936,25 @@ h4{font-size:17px;font-weight:600}
     Array.prototype.forEach.call(items, function(el){ el.classList.add('on'); });
   }
 
-  /* Picking a package carries the choice into both forms. */
+  /* Picking a package pre-fills the single estimate form. */
   Array.prototype.forEach.call(document.querySelectorAll('[data-package]'), function(el){
     el.addEventListener('click', function(){
-      var value = el.getAttribute('data-package');
-      ['package','package2'].forEach(function(id){
-        var f = document.getElementById(id);
-        if (f) f.value = value;
-      });
-      Array.prototype.forEach.call(document.querySelectorAll('select[name="stone"]'), function(s){
-        s.value = 'Quartz';
-      });
+      var field = document.getElementById('package');
+      if (field) field.value = el.getAttribute('data-package');
+      var material = document.getElementById('h-stone');
+      if (material) material.value = 'Quartz';
     });
   });
+
+  /* Tracking: the form leaves the page on submit, so the success event is
+     pushed from /thanks/. This one records the submit attempt itself. */
+  var form = document.getElementById('form01');
+  if (form) {
+    form.addEventListener('submit', function(){
+      window.dataLayer = window.dataLayer || [];
+      window.dataLayer.push({ 'event': 'lead_form_submit' });
+    });
+  }
 })();
 </script>
 
