@@ -189,12 +189,6 @@ h4{font-size:17px;font-weight:600}
 .counters span{display:block;margin-top:7px;font-size:12.5px;line-height:1.4;
   color:rgba(255,255,255,.75)}
 
-/* suppliers ------------------------------------------------------------ */
-.makers{display:flex;flex-wrap:wrap;justify-content:center;align-items:center;
-  gap:18px 42px;margin:0;padding:0}
-.makers li{list-style:none;font-family:Poppins,sans-serif;font-size:21px;font-weight:700;
-  letter-spacing:.5px;color:#B4B4B4}
-
 /* icon boxes ----------------------------------------------------------- */
 .iconboxes{display:grid;gap:24px}
 .iconbox{background:#fff;border-radius:var(--radius);box-shadow:var(--shadow);
@@ -290,7 +284,7 @@ h4{font-size:17px;font-weight:600}
 .step:hover{transform:translateY(-6px);box-shadow:var(--shadow-lg)}
 .step .num{counter-increment:step;width:74px;height:74px;margin:-70px auto 20px;border-radius:50%;
   background:var(--gold);color:#fff;display:flex;align-items:center;justify-content:center;
-  font-family:Poppins,sans-serif;font-size:28px;font-weight:800;border:5px solid var(--grey);
+  font-family:Poppins,sans-serif;font-size:28px;font-weight:800;border:5px solid #fff;
   box-shadow:0 8px 22px rgba(200,145,47,.35)}
 .step .num::before{content:"0" counter(step)}
 .step h3{font-size:19px;margin-bottom:10px}
@@ -608,20 +602,6 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
   </div>
 </section>
 
-<!-- suppliers ========================================================== -->
-<section class="sec sec-grey" style="padding:50px 0">
-  <div class="container">
-    <div class="head reveal" style="margin-bottom:26px">
-      <span class="label">Our suppliers</span>
-      <h2 style="font-size:22px;margin:0">Sourced directly from world-class stone manufacturers</h2>
-    </div>
-    <ul class="makers reveal">
-      <li>Q QUARTZ</li>
-      <li>LG VIATERA</li>
-      <li>COMPAC</li>
-    </ul>
-  </div>
-</section>
 
 <!-- who we work with =================================================== -->
 <section class="sec">
@@ -723,7 +703,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 
 
 <!-- portfolio ========================================================== -->
-<section class="sec">
+<section class="sec sec-grey">
   <div class="container">
     <div class="head reveal">
       <span class="label">Recent installations</span>
@@ -805,7 +785,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- process ============================================================ -->
-<section class="sec sec-grey">
+<section class="sec">
   <div class="container">
     <div class="head reveal">
       <span class="label">How it works</span>
@@ -836,7 +816,7 @@ height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
 </section>
 
 <!-- faq ================================================================ -->
-<section class="sec">
+<section class="sec sec-grey">
   <div class="container">
     <div class="head reveal">
       <span class="label">Good to know</span>
