@@ -1,0 +1,12 @@
+# Stone Elegance Marble & Granite — https://stonelegance.com
+
+User-agent: *
+Allow: /
+
+# Paid-traffic landing page and post-submit page: never in organic results.
+Disallow: /lp/
+Disallow: /thanks/
+Disallow: /uploads/
+Disallow: /send.php
+
+Sitemap: https://stonelegance.com/sitemap.xml

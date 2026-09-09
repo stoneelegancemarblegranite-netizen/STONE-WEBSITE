@@ -1,0 +1,18 @@
+# Working files — kept on disk, never deployed.
+
+# Pasted reference screenshots
+uploads/
+# Social cover + Elementor style references
+assets/
+# Editor preview artifact
+.thumbnail
+# Superseded by Web3Forms; kept locally as a fallback
+send.php
+
+# OS / editor noise
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+.DS_Store
+*.bak
+*~
