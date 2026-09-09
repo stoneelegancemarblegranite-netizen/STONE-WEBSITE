@@ -6,7 +6,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 A single-page marketing site for Stone Elegance Marble & Granite (countertop fabricator in Clifton, NJ), authored as one **Design Canvas component file**: `index.html` (was `Stone Elegance v2.dc.html`; renamed so Apache serves it as the document root). It still uses Design Canvas syntax internally — `<x-dc>`, `<helmet>`, `text/x-dc` — driven by `support.js`, despite the plain `.html` extension. That file is the entire site — template, styles, and logic. There is no framework project, no package manager, and no build step.
 
-Alongside it: `lp/index.html` (Google Ads landing page, `noindex`), `thanks/index.html` (post-submit page, `noindex,nofollow`), `404.html`, and the site plumbing — `.htaccess`, `robots.txt`, `sitemap.xml`, `site.webmanifest`.
+Alongside it: `lp/index.html` (Google Ads landing page, `noindex`), `thanks/index.html` (post-submit page, `noindex,nofollow`), `redirect/index.html` (digital business card for QR codes and link-in-bio, `noindex,follow`, ships `stone-elegance.vcf` next to it), `404.html`, and the site plumbing — `.htaccess`, `robots.txt`, `sitemap.xml`, `site.webmanifest`.
 
 **Canonical host is `https://stonelegance.com` (no www).** It is hardcoded in five places: `.htaccess` (two RewriteRules), `robots.txt`, `sitemap.xml`, the `redirect` hidden field in all three forms, and the canonical / og:url / JSON-LD block in the home page head. Changing domains means editing all of them.
 
