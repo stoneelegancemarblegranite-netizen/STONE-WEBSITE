@@ -858,6 +858,39 @@ class Component extends DCLogic {
       hv.addEventListener('canplay', this._heroReady);
     }
 
+    // TEMPORARY diagnostic, reachable only at /?debug=1 — invisible to real traffic.
+    // Remove once the hero playback question is settled.
+    if (window.location.search.indexOf('debug') !== -1) {
+      this._dbgTimer = setTimeout(() => {
+        const box = document.createElement('pre');
+        box.style.cssText = 'position:fixed;left:8px;bottom:8px;z-index:99999;margin:0;padding:10px 12px;' +
+          'background:rgba(0,0,0,.9);color:#4ade80;font:12px/1.55 ui-monospace,Consolas,monospace;' +
+          'white-space:pre-wrap;max-width:92vw;border:1px solid #4ade80';
+        const hero = document.querySelector('#home video');
+        const about = document.querySelector('#about video');
+        box.textContent = [
+          'reduced-motion  : ' + heroReduce,
+          'hero element    : ' + !!hero,
+          'hero currentSrc : ' + (hero ? ((hero.currentSrc || '(vazio)').split('/').pop()) : '-'),
+          'hero readyState : ' + (hero ? hero.readyState : '-'),
+          'hero network    : ' + (hero ? hero.networkState : '-'),
+          'hero paused     : ' + (hero ? hero.paused : '-'),
+          'hero muted      : ' + (hero ? hero.muted : '-') + '  attr=' + (hero ? hero.hasAttribute('muted') : '-'),
+          'hero error      : ' + (hero && hero.error ? (hero.error.code + ' ' + hero.error.message) : 'nenhum'),
+          'hero videoSize  : ' + (hero ? (hero.videoWidth + 'x' + hero.videoHeight) : '-'),
+          'about paused    : ' + (about ? about.paused : '-')
+        ].join('\n');
+        document.body.appendChild(box);
+        if (hero) {
+          const t = hero.play();
+          if (t && t.then) {
+            t.then(() => { box.textContent += '\nplay()          : OK, paused=' + hero.paused; })
+             .catch((e) => { box.textContent += '\nplay()          : ' + e.name + ' - ' + e.message; });
+          }
+        }
+      }, 2500);
+    }
+
     this._esc = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null, mobileMenuOpen: false }); };
     window.addEventListener('keydown', this._esc);
 
@@ -1116,6 +1149,7 @@ class Component extends DCLogic {
     document.body.style.overflowY = '';
     window.removeEventListener('keydown', this._esc);
     window.removeEventListener('scroll', this._scroll);
+    if (this._dbgTimer) clearTimeout(this._dbgTimer);
     if (this._heroReady && this.heroVideoRef.current) {
       this.heroVideoRef.current.removeEventListener('loadeddata', this._heroReady);
       this.heroVideoRef.current.removeEventListener('canplay', this._heroReady);
