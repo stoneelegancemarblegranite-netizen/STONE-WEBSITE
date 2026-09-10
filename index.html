@@ -42,6 +42,10 @@
       "description": "Custom granite, quartz, marble and quartzite countertops fabricated and installed across New Jersey, New York and Pennsylvania.",
       "telephone": "+1-862-464-5987",
       "email": "stoneelegancemarblegranite@gmail.com",
+      "sameAs": [
+        "https://www.facebook.com/stoneelegancemarblework/",
+        "https://www.instagram.com/stone.elegance_/"
+      ],
       "priceRange": "$$",
       "address": {
         "@type": "PostalAddress",
@@ -118,6 +122,26 @@
   .materials-arrow:hover{background:#F4F2EE;border-color:rgba(18,18,18,.24);color:#000;transform:translateY(-50%) scale(1.07);box-shadow:0 22px 54px rgba(0,0,0,.4)}
   .materials-arrow-prev{left:clamp(-30px,-2.2vw,-14px)}
   .materials-arrow-next{right:clamp(-30px,-2.2vw,-14px)}
+  /* Vimeo background player. An iframe cannot object-fit, so the frame is sized to
+     overflow the hero on whichever axis is short (--ar is the video's width/height). */
+  [data-hero-video]{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s ease;--ar:1.7778}
+  [data-hero-video] iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;
+    width:max(100vw, calc(100vh * var(--ar)));height:max(100vh, calc(100vw / var(--ar)))}
+  .partner-logo{display:block;width:auto;opacity:.7;transition:opacity .35s,transform .35s}
+  .partner-logo:hover{opacity:1;transform:translateY(-2px)}
+  .pl-msi{height:50px}
+  .pl-astra{height:29px}
+  .pl-lgm{height:25px}
+  .pl-gran{height:19px}
+  .pl-reliance{height:38px}
+  .partner-word{font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:17px;letter-spacing:.13em;text-transform:uppercase;color:rgba(244,242,238,.7);transition:color .35s}
+  .partner-word:hover{color:rgba(244,242,238,1)}
+  .footer-social{display:flex;align-items:center;gap:10px;margin-top:22px}
+  .footer-social a{display:inline-flex;align-items:center;justify-content:center;width:40px;height:40px;border:1px solid rgba(244,242,238,.22);color:rgba(244,242,238,.82);transition:background .3s,border-color .3s,color .3s,transform .3s}
+  .footer-social a:hover{background:#4E5738;border-color:#4E5738;color:#FFF;transform:translateY(-2px)}
+  .footer-social svg{width:18px;height:18px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+  .footer-email{color:rgba(244,242,238,.82);line-height:1.45;overflow-wrap:anywhere}
+  .footer-email span{display:block}
   [data-rail]::-webkit-scrollbar{display:none}
   [data-marquee]:hover [data-marquee-track]{animation-play-state:paused}
   @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
@@ -142,7 +166,12 @@
     [data-stats] > div{grid-template-columns:repeat(2,minmax(0,1fr))!important;gap:28px 18px!important}
     [data-partners]{padding:34px 18px 36px!important}
     [data-partners] [data-partner-logos]{gap:20px 26px!important}
-    [data-partners] [data-partner-logos] span{font-size:16px!important;letter-spacing:.1em!important}
+    .pl-msi{height:36px!important}
+    .pl-astra{height:21px!important}
+    .pl-lgm{height:18px!important}
+    .pl-gran{height:14px!important}
+    .pl-reliance{height:27px!important}
+    .partner-word{font-size:12.5px!important;letter-spacing:.1em!important}
     #about,#materials,#why,#process,#portfolio,#reviews,#faq,#areas,#contact{padding:58px 18px!important;scroll-margin-top:74px!important}
     #about > div{display:block!important}
     .about-collage{display:none!important}
@@ -214,7 +243,7 @@
     <button class="mobile-menu-button" type="button" onClick="{{ toggleMobileMenu }}" aria-label="Open menu"><span></span></button>
     <nav class="desktop-nav" style="display:flex;align-items:center;gap:clamp(14px,2vw,30px);flex-wrap:wrap;margin-left:auto">
       <a href="#about" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">About</a>
-      <a href="#materials" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Materials</a>
+      <a href="#materials" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Services</a>
       <a href="#portfolio" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Portfolio</a>
       <a href="#why" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Why us</a>
       <a href="#reviews" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Reviews</a>
@@ -225,7 +254,7 @@
   <sc-if value="{{ mobileMenuOpen }}" hint-placeholder-val="{{ false }}">
     <nav class="mobile-menu-panel">
       <a href="#about" onClick="{{ closeMobileMenu }}">About</a>
-      <a href="#materials" onClick="{{ closeMobileMenu }}">Materials</a>
+      <a href="#materials" onClick="{{ closeMobileMenu }}">Services</a>
       <a href="#portfolio" onClick="{{ closeMobileMenu }}">Portfolio</a>
       <a href="#why" onClick="{{ closeMobileMenu }}">Why us</a>
       <a href="#reviews" onClick="{{ closeMobileMenu }}">Reviews</a>
@@ -237,7 +266,8 @@
 
 <section id="home" style="position:relative;min-height:clamp(640px,94vh,940px);display:flex;align-items:center;justify-content:center;text-align:center;padding:200px clamp(20px,5vw,64px) clamp(60px,10vh,110px);overflow:hidden;color:#F4F2EE">
   <div style="position:absolute;inset:0;z-index:0">
-    <img src="img/p02.jpg" alt="Waterfall quartz island fabricated and installed by Stone Elegance in Clifton, NJ" style="width:100%;height:100%;object-fit:cover;">
+    <img src="img/hero-poster.jpg" alt="Waterfall quartz island fabricated and installed by Stone Elegance in Clifton, NJ" style="width:100%;height:100%;object-fit:cover;">
+    <div ref="{{ heroVideoRef }}" data-hero-video="" aria-hidden="true"></div>
     <div style="position:absolute;inset:0;background:rgba(13,14,11,.68)"></div>
   </div>
   <div style="width:100%;max-width:1200px;margin:0 auto;position:relative;z-index:2">
@@ -259,10 +289,13 @@
 <section data-partners="" style="background:#0D0D0D;color:#F4F2EE;padding:clamp(40px,4.6vw,62px) clamp(20px,5vw,64px);border-bottom:1px solid rgba(244,242,238,.1)">
   <div style="max-width:1200px;margin:0 auto;display:flex;flex-direction:column;align-items:center;gap:clamp(24px,3vw,36px)">
     <span data-reveal="" style="display:inline-flex;align-items:center;gap:.85em;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E2B866;text-align:center;text-wrap:balance"><span style="width:3px;height:13px;background:currentColor;flex:0 0 auto"></span>Sourced directly from world-class stone manufacturers</span>
-    <div data-partner-logos="" data-reveal="" data-delay="1" style="display:flex;align-items:center;justify-content:center;gap:clamp(28px,5.5vw,76px);flex-wrap:wrap">
-      <span style="font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:clamp(17px,2.1vw,25px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,238,.72)">Q Quartz</span>
-      <span style="font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:clamp(17px,2.1vw,25px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,238,.72)">LG Viatera</span>
-      <span style="font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:clamp(17px,2.1vw,25px);letter-spacing:.14em;text-transform:uppercase;color:rgba(244,242,238,.72)">Compac</span>
+    <div data-partner-logos="" data-reveal="" data-delay="1" style="display:flex;align-items:center;justify-content:center;gap:clamp(22px,3.6vw,54px);flex-wrap:wrap">
+      <img class="partner-logo pl-msi" src="img/logos/msi.png" alt="MSI" loading="lazy" width="600" height="337">
+      <img class="partner-logo pl-astra" src="img/logos/astra.png" alt="Astra Surfaces" loading="lazy" width="600" height="143">
+      <img class="partner-logo pl-lgm" src="img/logos/lgm.png" alt="LGM" loading="lazy" width="500" height="110">
+      <img class="partner-logo pl-gran" src="img/logos/gran-trade.png" alt="Gran Trade" loading="lazy" width="300" height="42">
+      <img class="partner-logo pl-reliance" src="img/logos/reliance.png" alt="Reliance Surfaces" loading="lazy" width="203" height="80">
+      <span class="partner-word">IndoAmerican Stone</span>
     </div>
   </div>
 </section>
@@ -367,12 +400,6 @@
 
 
 <section id="why" style="position:relative;overflow:hidden;background:#F1EFEC;padding:clamp(72px,10vw,140px) clamp(20px,5vw,64px)">
-  <figure data-polaroid="" style="position:absolute;top:clamp(60px,7vw,100px);right:clamp(8px,2.5vw,50px);width:clamp(140px,14vw,200px);margin:0;padding:11px 11px 40px;background:#FFF;transform:rotate(7deg);box-shadow:0 22px 44px -22px rgba(18,18,18,.4);z-index:0;pointer-events:none">
-    <div style="aspect-ratio:1/1;overflow:hidden;background:#EDEBE6"><img src="img/p13.jpg" alt="Waterfall edge on a compact island" style="width:100%;height:100%;object-fit:cover"></div>
-  </figure>
-  <figure data-polaroid="" style="position:absolute;bottom:clamp(40px,5vw,80px);left:clamp(8px,2.5vw,50px);width:clamp(140px,14vw,200px);margin:0;padding:11px 11px 40px;background:#FFF;transform:rotate(-6.5deg);box-shadow:0 22px 44px -22px rgba(18,18,18,.4);z-index:0;pointer-events:none">
-    <div style="aspect-ratio:1/1;overflow:hidden;background:#EDEBE6"><img src="img/p05.jpg" alt="Mitred stone edge detail" style="width:100%;height:100%;object-fit:cover"></div>
-  </figure>
   <div style="max-width:1200px;margin:0 auto 46px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:20px;border-bottom:1px solid rgba(18,18,18,.16);padding-bottom:34px">
     <div style="display:flex;flex-direction:column;align-items:center">
       <span data-reveal="" style="display:inline-flex;align-items:center;gap:.85em;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#8A5F18"><span style="width:3px;height:13px;background:currentColor"></span>Why choose us</span>
@@ -636,12 +663,20 @@
     <div>
       <img src="img/logo-white.png" alt="Stone Elegance Marble &amp; Granite" style="width:240px;height:auto">
       <p style="margin:22px 0 0;max-width:34ch;font-size:13.5px;line-height:1.8;color:rgba(244,242,238,.7)">Custom granite, quartz, marble and quartzite countertops fabricated and installed across New Jersey, New York and Pennsylvania.</p>
+      <div class="footer-social">
+        <a href="https://www.facebook.com/stoneelegancemarblework/" target="_blank" rel="noopener" aria-label="Stone Elegance on Facebook">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M18 2h-3a5 5 0 0 0-5 5v3H7v4h3v8h4v-8h3l1-4h-4V7a1 1 0 0 1 1-1h3Z"></path></svg>
+        </a>
+        <a href="https://www.instagram.com/stone.elegance_/" target="_blank" rel="noopener" aria-label="Stone Elegance on Instagram">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="5"></rect><circle cx="12" cy="12" r="4"></circle><circle cx="17.5" cy="6.5" r="1.2"></circle></svg>
+        </a>
+      </div>
     </div>
     <div>
       <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E2B866">Navigate</div>
       <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:14px">
         <a href="#about" style="color:rgba(244,242,238,.82)">About</a>
-        <a href="#materials" style="color:rgba(244,242,238,.82)">Materials</a>
+        <a href="#materials" style="color:rgba(244,242,238,.82)">Services</a>
         <a href="#process" style="color:rgba(244,242,238,.82)">Process</a>
         <a href="#portfolio" style="color:rgba(244,242,238,.82)">Portfolio</a>
         <a href="#faq" style="color:rgba(244,242,238,.82)">FAQ</a>
@@ -651,7 +686,7 @@
       <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E2B866">Contact</div>
       <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:14px">
         <a href="tel:+18624645987" style="color:rgba(244,242,238,.82)">(862) 464-5987</a>
-        <a href="mailto:stoneelegancemarblegranite@gmail.com" style="color:rgba(244,242,238,.82);word-break:break-word">stoneelegancemarblegranite@gmail.com</a>
+        <a class="footer-email" href="mailto:stoneelegancemarblegranite@gmail.com"><span>stoneelegancemarblegranite</span><span>@gmail.com</span></a>
         <span style="color:rgba(244,242,238,.7)">Clifton, New Jersey</span>
         <span style="color:rgba(244,242,238,.7)">Mon – Sat</span>
       </div>
@@ -684,6 +719,7 @@
 class Component extends DCLogic {
   state = { lightbox: null, mobileMenuOpen: false };
   videoRef = React.createRef();
+  heroVideoRef = React.createRef();
   headerRef = React.createRef();
   logoRef = React.createRef();
 
@@ -808,6 +844,30 @@ class Component extends DCLogic {
     const v = this.videoRef.current;
     if (v) { v.muted = true; v.loop = true; v.defaultMuted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
 
+    // hero background video — picked by viewport, faded in over the poster image.
+    // the poster <img> stays underneath, so the hero still reads if JS or the video fails.
+    const hv = this.heroVideoRef.current;
+    const heroReduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
+    if (hv && !heroReduce) {
+      // built here rather than in the template so only one of the two videos is ever
+      // requested, and so nothing loads at all under prefers-reduced-motion
+      const heroMobile = window.innerWidth <= 860;
+      const heroId = heroMobile ? '1225579355?h=a48c96abcc' : '1225579357?h=08f1135de6';
+      hv.style.setProperty('--ar', heroMobile ? '0.4615' : '1.7778');
+      const frame = document.createElement('iframe');
+      frame.title = 'Stone Elegance countertop installations';
+      frame.setAttribute('aria-hidden', 'true');
+      frame.setAttribute('tabindex', '-1');
+      frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
+      frame.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
+      frame.src = 'https://player.vimeo.com/video/' + heroId +
+        '&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1';
+      this._heroReady = () => { hv.style.opacity = '1'; };
+      frame.addEventListener('load', this._heroReady);
+      hv.appendChild(frame);
+      this._heroFrame = frame;
+    }
+
     this._esc = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null, mobileMenuOpen: false }); };
     window.addEventListener('keydown', this._esc);
 
@@ -885,7 +945,7 @@ class Component extends DCLogic {
     const polaroids = Array.prototype.slice.call(scope.querySelectorAll('[data-polaroid]'));
     const setPull = () => {
       const wide = window.innerWidth >= 1100;
-      pulls.forEach((el) => { el.style.marginTop = wide ? 'clamp(-104px,-6.5vw,-40px)' : '0px'; });
+      pulls.forEach((el) => { el.style.marginTop = wide ? 'clamp(-58px,-3.4vw,-20px)' : '0px'; });
       polaroids.forEach((el) => { el.style.display = window.innerWidth >= 1280 ? 'block' : 'none'; });
     };
     setPull();
@@ -926,8 +986,8 @@ class Component extends DCLogic {
       'section textarea',
       'section figure',
       'section img:not([aria-hidden="true"])',
-      'section video',
-      'section iframe',
+      'section video:not([aria-hidden="true"])',
+      'section iframe:not([aria-hidden="true"])',
       '[data-stats] > div > div',
       '#materials [data-slide]',
       '#portfolio [data-marquee-track] > div:first-child button',
@@ -1066,6 +1126,7 @@ class Component extends DCLogic {
     document.body.style.overflowY = '';
     window.removeEventListener('keydown', this._esc);
     window.removeEventListener('scroll', this._scroll);
+    if (this._heroReady && this._heroFrame) this._heroFrame.removeEventListener('load', this._heroReady);
     if (this._par) { window.removeEventListener('scroll', this._par); window.removeEventListener('resize', this._par); }
     if (this._matResize) window.removeEventListener('resize', this._matResize);
     if (this._matRaf) cancelAnimationFrame(this._matRaf);
@@ -1111,6 +1172,7 @@ class Component extends DCLogic {
           })
         : null,
       videoRef: this.videoRef,
+      heroVideoRef: this.heroVideoRef,
       headerRef: this.headerRef,
       logoRef: this.logoRef,
       openLightbox: this.openLightbox,

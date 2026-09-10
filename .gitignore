@@ -8,6 +8,17 @@ assets/
 .thumbnail
 # Superseded by Web3Forms; kept locally as a fallback
 send.php
+# Uncompressed banner masters (71 MB)
+img/videos banner/
+# Self-hosted hero encodes — kept on disk as the fallback if we drop the Vimeo embed
+img/hero-desktop.mp4
+img/hero-mobile.mp4
+# Supplier logo originals — shipped versions are img/logos/*.png (lowercase)
+img/logos/*.jpg
+img/logos/ASTRA LOGO.png
+img/logos/GRAN TRADE LOGO.png
+img/logos/LGM LOGO.png
+img/logos/RELIANCE-SURFACESLOGO.png
 
 # OS / editor noise
 Thumbs.db
