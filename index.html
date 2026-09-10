@@ -122,11 +122,6 @@
   .materials-arrow:hover{background:#F4F2EE;border-color:rgba(18,18,18,.24);color:#000;transform:translateY(-50%) scale(1.07);box-shadow:0 22px 54px rgba(0,0,0,.4)}
   .materials-arrow-prev{left:clamp(-30px,-2.2vw,-14px)}
   .materials-arrow-next{right:clamp(-30px,-2.2vw,-14px)}
-  /* Vimeo background player. An iframe cannot object-fit, so the frame is sized to
-     overflow the hero on whichever axis is short (--ar is the video's width/height). */
-  [data-hero-video]{position:absolute;inset:0;overflow:hidden;pointer-events:none;opacity:0;transition:opacity 1s ease;--ar:1.7778}
-  [data-hero-video] iframe{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);border:0;
-    width:max(100vw, calc(100vh * var(--ar)));height:max(100vh, calc(100vw / var(--ar)))}
   .partner-logo{display:block;width:auto;opacity:.7;transition:opacity .35s,transform .35s}
   .partner-logo:hover{opacity:1;transform:translateY(-2px)}
   .pl-msi{height:50px}
@@ -267,7 +262,7 @@
 <section id="home" style="position:relative;min-height:clamp(640px,94vh,940px);display:flex;align-items:center;justify-content:center;text-align:center;padding:200px clamp(20px,5vw,64px) clamp(60px,10vh,110px);overflow:hidden;color:#F4F2EE">
   <div style="position:absolute;inset:0;z-index:0">
     <img src="img/hero-poster.jpg" alt="Waterfall quartz island fabricated and installed by Stone Elegance in Clifton, NJ" style="width:100%;height:100%;object-fit:cover;">
-    <div ref="{{ heroVideoRef }}" data-hero-video="" aria-hidden="true"></div>
+    <video ref="{{ heroVideoRef }}" poster="img/hero-poster.jpg" autoplay="{{ true }}" loop="{{ true }}" muted="{{ true }}" playsInline="{{ true }}" preload="auto" aria-hidden="true" tabIndex="-1" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover"></video>
     <div style="position:absolute;inset:0;background:rgba(13,14,11,.68)"></div>
   </div>
   <div style="width:100%;max-width:1200px;margin:0 auto;position:relative;z-index:2">
@@ -844,28 +839,23 @@ class Component extends DCLogic {
     const v = this.videoRef.current;
     if (v) { v.muted = true; v.loop = true; v.defaultMuted = true; const p = v.play(); if (p && p.catch) p.catch(() => {}); }
 
-    // hero background video — picked by viewport, faded in over the poster image.
-    // the poster <img> stays underneath, so the hero still reads if JS or the video fails.
+    // hero background video. The element is visible from the start and carries a
+    // poster, so a failure shows the still frame instead of a blank hero — there is
+    // deliberately no opacity gate that could strand it invisible.
     const hv = this.heroVideoRef.current;
     const heroReduce = !!(window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches);
     if (hv && !heroReduce) {
-      // built here rather than in the template so only one of the two videos is ever
-      // requested, and so nothing loads at all under prefers-reduced-motion
-      const heroMobile = window.innerWidth <= 860;
-      const heroId = heroMobile ? '1225579355?h=a48c96abcc' : '1225579357?h=08f1135de6';
-      hv.style.setProperty('--ar', heroMobile ? '0.4615' : '1.7778');
-      const frame = document.createElement('iframe');
-      frame.title = 'Stone Elegance countertop installations';
-      frame.setAttribute('aria-hidden', 'true');
-      frame.setAttribute('tabindex', '-1');
-      frame.setAttribute('referrerpolicy', 'strict-origin-when-cross-origin');
-      frame.setAttribute('allow', 'autoplay; fullscreen; picture-in-picture');
-      frame.src = 'https://player.vimeo.com/video/' + heroId +
-        '&background=1&autoplay=1&loop=1&muted=1&autopause=0&controls=0&title=0&byline=0&portrait=0&dnt=1';
-      this._heroReady = () => { hv.style.opacity = '1'; };
-      frame.addEventListener('load', this._heroReady);
-      hv.appendChild(frame);
-      this._heroFrame = frame;
+      // React writes the muted property but not the attribute, and Chrome's autoplay
+      // policy reads the attribute — without this, play() is rejected.
+      hv.setAttribute('muted', '');
+      hv.muted = true; hv.defaultMuted = true; hv.loop = true; hv.playsInline = true;
+      // src is set here, not in the template, so only one of the two files is fetched
+      hv.src = window.innerWidth <= 860 ? 'img/hero-mobile.mp4' : 'img/hero-desktop.mp4';
+      hv.load();
+      this._heroReady = () => { const p = hv.play(); if (p && p.catch) p.catch(() => {}); };
+      this._heroReady();
+      hv.addEventListener('loadeddata', this._heroReady);
+      hv.addEventListener('canplay', this._heroReady);
     }
 
     this._esc = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null, mobileMenuOpen: false }); };
@@ -1126,7 +1116,10 @@ class Component extends DCLogic {
     document.body.style.overflowY = '';
     window.removeEventListener('keydown', this._esc);
     window.removeEventListener('scroll', this._scroll);
-    if (this._heroReady && this._heroFrame) this._heroFrame.removeEventListener('load', this._heroReady);
+    if (this._heroReady && this.heroVideoRef.current) {
+      this.heroVideoRef.current.removeEventListener('loadeddata', this._heroReady);
+      this.heroVideoRef.current.removeEventListener('canplay', this._heroReady);
+    }
     if (this._par) { window.removeEventListener('scroll', this._par); window.removeEventListener('resize', this._par); }
     if (this._matResize) window.removeEventListener('resize', this._matResize);
     if (this._matRaf) cancelAnimationFrame(this._matRaf);
