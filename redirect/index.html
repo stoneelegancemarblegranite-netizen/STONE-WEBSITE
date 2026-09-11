@@ -17,6 +17,15 @@
 <!-- GTM: paste the container snippet here if you want to measure QR scans. -->
 
 <style>
+/* Cross-document page transitions — same opt-in as the rest of the site. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:pageOut .26s cubic-bezier(.4,0,1,1) both;mix-blend-mode:normal}
+::view-transition-new(root){animation:pageIn .44s cubic-bezier(.22,.61,.36,1) both;mix-blend-mode:normal}
+@keyframes pageOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-10px)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+::view-transition-old(root),::view-transition-new(root){animation-duration:.001ms}
+}
 :root{
   --paper:#FAF9F7; --paper-2:#F4F2EE; --line:rgba(18,18,18,.12);
   --ink:#121212; --ink-soft:rgba(23,17,14,.72); --ink-mute:#57564E;

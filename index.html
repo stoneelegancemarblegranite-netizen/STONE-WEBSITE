@@ -5,7 +5,16 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <!-- Indexing signals. These live in the real <head> (not in <helmet>) so they
-     are parsed before the runtime boots, and stay correct even if JS fails. -->
+     are parsed before the runtime boots, and stay correct even if JS fails.
+     The page title and meta description belong here for the same reason: the
+     helmet block only reaches the document after React mounts, so a crawler
+     that does not execute JS — or one whose render pass is queued for later —
+     would otherwise see a home page with neither. Keep them out of the helmet:
+     the runtime appends rather than replaces, so a copy in both places would
+     leave the document with two title elements. -->
+<title>Custom Countertop Installation Clifton NJ | Stone Elegance</title>
+<meta name="description" content="Custom granite, quartz, marble &amp; quartzite countertops in NJ, NY &amp; PA. 10+ years of experience, direct manufacturer pricing &amp; fast install. Get a free quote!">
+
 <link rel="canonical" href="https://stonelegance.com/">
 <meta name="robots" content="index,follow,max-image-preview:large,max-snippet:-1,max-video-preview:-1">
 <meta name="theme-color" content="#4E5738">
@@ -47,6 +56,7 @@
         "https://www.instagram.com/stone.elegance_/"
       ],
       "priceRange": "$$",
+      "hasMap": "https://www.google.com/maps/place/Stone+Elegance+Marble+%26+Granite/data=!4m2!3m1!1s0x0:0x54cea5bd7432807f",
       "address": {
         "@type": "PostalAddress",
         "addressLocality": "Clifton",
@@ -56,17 +66,34 @@
       "areaServed": [
         { "@type": "State", "name": "New Jersey" },
         { "@type": "State", "name": "New York" },
-        { "@type": "State", "name": "Pennsylvania" }
+        { "@type": "State", "name": "Pennsylvania" },
+        { "@type": "City", "name": "Clifton", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Paterson", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Passaic", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Wayne", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Montclair", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Newark", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Jersey City", "addressRegion": "NJ" },
+        { "@type": "City", "name": "Hackensack", "addressRegion": "NJ" },
+        { "@type": "City", "name": "New York", "addressRegion": "NY" },
+        { "@type": "AdministrativeArea", "name": "Passaic County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Bergen County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Essex County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Hudson County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Union County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Morris County, NJ" },
+        { "@type": "AdministrativeArea", "name": "Rockland County, NY" },
+        { "@type": "AdministrativeArea", "name": "Eastern Pennsylvania" }
       ],
       "openingHoursSpecification": [{
         "@type": "OpeningHoursSpecification",
         "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"]
       }],
       "makesOffer": [
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Granite countertop fabrication and installation" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Quartz countertop fabrication and installation" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Marble countertop fabrication and installation" } },
-        { "@type": "Offer", "itemOffered": { "@type": "Service", "name": "Quartzite countertop fabrication and installation" } }
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://stonelegance.com/granite-countertops/#service", "name": "Granite countertop fabrication and installation", "url": "https://stonelegance.com/granite-countertops/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://stonelegance.com/quartz-countertops/#service", "name": "Quartz countertop fabrication and installation", "url": "https://stonelegance.com/quartz-countertops/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://stonelegance.com/marble-countertops/#service", "name": "Marble countertop fabrication and installation", "url": "https://stonelegance.com/marble-countertops/" } },
+        { "@type": "Offer", "itemOffered": { "@type": "Service", "@id": "https://stonelegance.com/quartzite-countertops/#service", "name": "Quartzite countertop fabrication and installation", "url": "https://stonelegance.com/quartzite-countertops/" } }
       ]
     },
     {
@@ -76,18 +103,63 @@
       "name": "Stone Elegance Marble & Granite",
       "inLanguage": "en-US",
       "publisher": { "@id": "https://stonelegance.com/#business" }
+    },
+    {
+      "@type": "FAQPage",
+      "@id": "https://stonelegance.com/#faq",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "How long does the custom countertop installation process take?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Once slab selection and digital laser templating are complete, fabrication typically takes 5 to 7 business days. On-site installation is completed in a single day." }
+        },
+        {
+          "@type": "Question",
+          "name": "What geographical areas do you serve?",
+          "acceptedAnswer": { "@type": "Answer", "text": "We cover a 50-mile radius around our Clifton, NJ headquarters, including Passaic, Bergen, Essex, Hudson, Union, and Morris counties, as well as New York City, Rockland County, and Eastern Pennsylvania." }
+        },
+        {
+          "@type": "Question",
+          "name": "Are your installations covered by a warranty?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes. Stone Elegance provides a dedicated craftsmanship warranty covering all fabrication and installation labor, in addition to individual manufacturer material warranties." }
+        },
+        {
+          "@type": "Question",
+          "name": "What is the main maintenance difference between quartz and granite?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Quartz is non-porous and never requires sealing. Granite is a natural porous stone that requires periodic sealing, typically once per year, to maintain stain resistance." }
+        }
+      ]
     }
   ]
 }
 </script>
+
+<!-- Cross-document page transitions. This lives in the real <head>, not in
+     <helmet>: the incoming document's opt-in has to be readable before its
+     first render, and the runtime injects <helmet> well after that. The same
+     block is in css/pages.css for the sub-pages. Browsers without the View
+     Transitions API navigate instantly, exactly as before.
+     The body colours are repeated here so the transition snapshot is never
+     taken against an unpainted white page. -->
+<style>
+  body{margin:0;background:#FAF9F7;color:#121212}
+  @view-transition{navigation:auto}
+  ::view-transition-old(root){animation:pageOut .26s cubic-bezier(.4,0,1,1) both;mix-blend-mode:normal}
+  ::view-transition-new(root){animation:pageIn .44s cubic-bezier(.22,.61,.36,1) both;mix-blend-mode:normal}
+  @keyframes pageOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-10px)}}
+  @keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @media (prefers-reduced-motion: reduce){
+    ::view-transition-old(root),::view-transition-new(root){animation-duration:.001ms}
+  }
+</style>
 
 <script src="./support.js"></script>
 </head>
 <body>
 <x-dc>
 <helmet>
-<title>Custom Countertop Installation Clifton NJ | Stone Elegance</title>
-<meta name="description" content="Custom granite, quartz, marble &amp; quartzite countertops in NJ, NY &amp; PA. 10+ years of experience, direct manufacturer pricing &amp; fast install. Get a free quote!">
+<!-- The page title and meta description deliberately live in the real document
+     head above, not here — see the comment there. Do not re-add them. -->
 <link rel="icon" href="img/mark-dark.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
@@ -118,6 +190,10 @@
   .mobile-menu-panel a:nth-child(5){animation-delay:.14s}
   .mobile-menu-panel a:nth-child(6){animation-delay:.175s}
   .mobile-menu-panel a:nth-child(7){animation-delay:.21s}
+  .mobile-menu-panel a:nth-child(8){animation-delay:.245s}
+  .mobile-menu-panel a:nth-child(9){animation-delay:.28s}
+  .mobile-menu-panel a:nth-child(10){animation-delay:.315s}
+  .mobile-menu-panel a:nth-child(11){animation-delay:.35s}
   .materials-arrow{position:absolute;top:50%;z-index:4;width:58px;height:58px;border-radius:50%;display:flex;align-items:center;justify-content:center;border:1px solid rgba(18,18,18,.1);background:#FFF;color:#0D0D0D;box-shadow:0 18px 42px rgba(0,0,0,.32);font-size:38px;font-weight:300;line-height:1;cursor:pointer;transform:translateY(-50%);transition:background .3s,border-color .3s,color .3s,transform .3s,box-shadow .3s}
   .materials-arrow:hover{background:#F4F2EE;border-color:rgba(18,18,18,.24);color:#000;transform:translateY(-50%) scale(1.07);box-shadow:0 22px 54px rgba(0,0,0,.4)}
   .materials-arrow-prev{left:clamp(-30px,-2.2vw,-14px)}
@@ -140,6 +216,21 @@
   [data-rail]::-webkit-scrollbar{display:none}
   [data-marquee]:hover [data-marquee-track]{animation-play-state:paused}
   @keyframes marq{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+  /* Services dropdown. Real :hover/:focus-within CSS rather than style-hover,
+     because the hover has to reveal a sibling, not restyle the hovered node.
+     The ::after is an invisible bridge across the gap between the trigger and
+     the panel, done with a pseudo-element so the header keeps its height. */
+  .nav-has-drop{position:relative;display:inline-flex;align-items:center}
+  .nav-has-drop::after{content:"";position:absolute;top:100%;left:-18px;right:-18px;height:16px}
+  .nav-drop-trigger{display:inline-flex;align-items:center;gap:.45em;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s}
+  .nav-has-drop:hover .nav-drop-trigger,.nav-has-drop:focus-within .nav-drop-trigger{color:#F4F2EE}
+  .nav-caret{display:inline-block;width:7px;height:7px;border-right:1.5px solid currentColor;border-bottom:1.5px solid currentColor;transform:translateY(-2px) rotate(45deg);transition:transform .3s}
+  .nav-has-drop:hover .nav-caret,.nav-has-drop:focus-within .nav-caret{transform:translateY(1px) rotate(225deg)}
+  .nav-drop{position:absolute;top:calc(100% + 14px);left:-18px;z-index:70;min-width:262px;padding:8px 0;background:rgba(15,15,15,.98);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);border:1px solid rgba(226,184,102,.24);box-shadow:0 26px 64px rgba(0,0,0,.5);opacity:0;visibility:hidden;transform:translateY(-8px);transition:opacity .28s cubic-bezier(.22,.61,.36,1),transform .28s cubic-bezier(.22,.61,.36,1),visibility .28s}
+  .nav-has-drop:hover .nav-drop,.nav-has-drop:focus-within .nav-drop{opacity:1;visibility:visible;transform:none}
+  .nav-drop a{display:block;padding:12px 22px;font-size:13.5px;letter-spacing:.02em;text-transform:none;color:rgba(244,242,238,.84);border-left:2px solid transparent;transition:background .25s,color .25s,border-color .25s}
+  .nav-drop a:hover{background:rgba(78,87,56,.55);color:#FFF;border-left-color:#E2B866}
+  .nav-drop-divider{display:block;margin:8px 0;border-top:1px solid rgba(244,242,238,.12)}
   @media (max-width: 860px){
     body{line-height:1.62}
     .top-strip{display:none!important}
@@ -152,6 +243,8 @@
     .mobile-menu-panel{position:fixed;top:64px;left:12px;right:12px;z-index:80;background:rgba(15,15,15,.98);border:1px solid rgba(226,184,102,.24);box-shadow:0 24px 70px rgba(0,0,0,.42);padding:10px}
     .mobile-menu-panel a{display:flex;align-items:center;justify-content:space-between;padding:15px 14px;border-bottom:1px solid rgba(244,242,238,.1);font-size:13px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:#F4F2EE}
     .mobile-menu-panel a:last-child{border-bottom:0;background:#4E5738;margin-top:8px;justify-content:center}
+    .mobile-menu-panel a.sub{padding-left:30px;font-size:12px;font-weight:500;letter-spacing:.05em;text-transform:none;color:rgba(244,242,238,.72)}
+    .mobile-menu-panel a.sub::before{content:"";width:7px;height:7px;margin-right:10px;background:#C8912F;transform:rotate(45deg);flex:0 0 auto;order:-1}
     #home{min-height:auto!important;align-items:flex-end!important;justify-content:flex-start!important;text-align:left!important;padding:112px 18px 52px!important}
     #home [data-hero-title]{max-width:11.5em!important;font-size:31px!important;line-height:1.12!important;letter-spacing:0!important;text-align:left!important;text-transform:none!important}
     #home [data-hero-copy]{font-size:15px!important;line-height:1.65!important;text-align:left!important}
@@ -238,7 +331,17 @@
     <button class="mobile-menu-button" type="button" onClick="{{ toggleMobileMenu }}" aria-label="Open menu"><span></span></button>
     <nav class="desktop-nav" style="display:flex;align-items:center;gap:clamp(14px,2vw,30px);flex-wrap:wrap;margin-left:auto">
       <a href="#about" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">About</a>
-      <a href="#materials" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Services</a>
+      <span class="nav-has-drop">
+        <a class="nav-drop-trigger" href="#materials">Services<span class="nav-caret" aria-hidden="true"></span></a>
+        <span class="nav-drop">
+          <a href="/granite-countertops/">Granite countertops</a>
+          <a href="/quartz-countertops/">Quartz countertops</a>
+          <a href="/marble-countertops/">Marble countertops</a>
+          <a href="/quartzite-countertops/">Quartzite countertops</a>
+          <span class="nav-drop-divider"></span>
+          <a href="#materials">Backsplashes, sinks &amp; edges</a>
+        </span>
+      </span>
       <a href="#portfolio" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Portfolio</a>
       <a href="#why" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Why us</a>
       <a href="#reviews" style="font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:rgba(244,242,238,.82);transition:color .3s" style-hover="color:#F4F2EE">Reviews</a>
@@ -250,6 +353,10 @@
     <nav class="mobile-menu-panel">
       <a href="#about" onClick="{{ closeMobileMenu }}">About</a>
       <a href="#materials" onClick="{{ closeMobileMenu }}">Services</a>
+      <a class="sub" href="/granite-countertops/">Granite countertops</a>
+      <a class="sub" href="/quartz-countertops/">Quartz countertops</a>
+      <a class="sub" href="/marble-countertops/">Marble countertops</a>
+      <a class="sub" href="/quartzite-countertops/">Quartzite countertops</a>
       <a href="#portfolio" onClick="{{ closeMobileMenu }}">Portfolio</a>
       <a href="#why" onClick="{{ closeMobileMenu }}">Why us</a>
       <a href="#reviews" onClick="{{ closeMobileMenu }}">Reviews</a>
@@ -318,7 +425,7 @@
 </section>
 
 <section id="materials" style="position:relative;overflow:hidden;background:#0D0D0D;color:#F4F2EE;padding:clamp(72px,10vw,140px) clamp(20px,5vw,64px)">
-  <img src="img/texture-overlay.jpg" alt="" aria-hidden="true" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.07;pointer-events:none">
+  <img src="img/texture-overlay.jpg" alt="" aria-hidden="true" loading="lazy" decoding="async" style="position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.07;pointer-events:none">
   <div style="position:relative;z-index:1;max-width:1200px;margin:0 auto 52px;display:flex;flex-direction:column;align-items:center;text-align:center;gap:18px;border-bottom:1px solid rgba(244,242,238,.16);padding-bottom:34px">
     <span data-reveal="" style="display:inline-flex;align-items:center;gap:.85em;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#E2B866"><span style="width:3px;height:13px;background:currentColor"></span>What we fabricate</span>
     <h2 data-reveal="" data-delay="1" style="text-transform:capitalize;margin:0;font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:clamp(27px,3.6vw,46px);line-height:1.22;color:#F4F2EE;text-wrap:balance">Custom stone countertops <span style="font-style:italic;font-weight:300;color:#E2B866">engineered</span> for lifetime durability</h2>
@@ -332,7 +439,7 @@
         <div style="flex:1 1 auto;display:flex;flex-direction:column;padding:30px 28px 28px">
           <h3 style="margin:0 0 14px;font-family:Montserrat,system-ui,sans-serif;font-weight:500;font-size:23px;letter-spacing:-.015em;line-height:1.2;color:#121212">Granite</h3>
           <p style="margin:0 0 26px;font-size:14px;line-height:1.7;color:rgba(23,17,14,.72)">Heat-resistant natural stone featuring distinctive organic veining. Built to handle heavy daily kitchen use, outdoor kitchens, and high-traffic commercial spaces.</p>
-          <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
+          <a href="/granite-countertops/" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
         </div>
       </article>
       <article data-slide="" style="flex:0 0 clamp(258px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;background:#F4F2EE;color:#121212">
@@ -342,7 +449,7 @@
         <div style="flex:1 1 auto;display:flex;flex-direction:column;padding:30px 28px 28px">
           <h3 style="margin:0 0 14px;font-family:Montserrat,system-ui,sans-serif;font-weight:500;font-size:23px;letter-spacing:-.015em;line-height:1.2;color:#121212">Marble</h3>
           <p style="margin:0 0 26px;font-size:14px;line-height:1.7;color:rgba(23,17,14,.72)">Classic luxury with soft, continuous veining patterns. Ideal for master bath vanities, fireplace hearths, and elegant kitchen accents.</p>
-          <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
+          <a href="/marble-countertops/" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
         </div>
       </article>
       <article data-slide="" style="flex:0 0 clamp(258px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;background:#F4F2EE;color:#121212">
@@ -352,7 +459,7 @@
         <div style="flex:1 1 auto;display:flex;flex-direction:column;padding:30px 28px 28px">
           <h3 style="margin:0 0 14px;font-family:Montserrat,system-ui,sans-serif;font-weight:500;font-size:23px;letter-spacing:-.015em;line-height:1.2;color:#121212">Quartz</h3>
           <p style="margin:0 0 26px;font-size:14px;line-height:1.7;color:rgba(23,17,14,.72)">Non-porous, stain-resistant engineered stone that eliminates the need for routine sealing. Excellent for active family kitchens and low-maintenance rental properties.</p>
-          <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
+          <a href="/quartz-countertops/" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
         </div>
       </article>
       <article data-slide="" style="flex:0 0 clamp(258px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;background:#F4F2EE;color:#121212">
@@ -362,7 +469,7 @@
         <div style="flex:1 1 auto;display:flex;flex-direction:column;padding:30px 28px 28px">
           <h3 style="margin:0 0 14px;font-family:Montserrat,system-ui,sans-serif;font-weight:500;font-size:23px;letter-spacing:-.015em;line-height:1.2;color:#121212">Quartzite</h3>
           <p style="margin:0 0 26px;font-size:14px;line-height:1.7;color:rgba(23,17,14,.72)">100% natural stone offering the dramatic aesthetic of marble paired with the scratch resistance of granite.</p>
-          <a href="#contact" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
+          <a href="/quartzite-countertops/" style="margin-top:auto;display:inline-flex;align-items:center;gap:12px;font-size:12px;font-weight:600;letter-spacing:.2em;text-transform:uppercase;color:#8A5F18;transition:gap .3s" style-hover="gap:18px;color:#8A5F18">Discover more <span style="line-height:1">→</span></a>
         </div>
       </article>
       <article data-slide="" style="flex:0 0 clamp(258px,30%,380px);scroll-snap-align:start;display:flex;flex-direction:column;background:#F4F2EE;color:#121212">
@@ -595,6 +702,7 @@
         <li style="position:relative;padding-left:22px;font-size:15px;color:rgba(244,242,238,.9)"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#C8912F;transform:rotate(45deg)"></span>Rockland County</li>
         <li style="position:relative;padding-left:22px;font-size:15px;color:rgba(244,242,238,.9)"><span style="position:absolute;left:0;top:9px;width:8px;height:8px;background:#C8912F;transform:rotate(45deg)"></span>Eastern Pennsylvania</li>
       </ul>
+      <p style="margin:24px 0 0;max-width:560px;font-size:14px;line-height:1.8;color:rgba(244,242,238,.68)">Regularly installing in Clifton, Paterson, Passaic, Wayne, Little Falls, Totowa, Hawthorne, Nutley, Bloomfield, Belleville, Montclair, Newark, West Orange, Livingston, Jersey City, Hoboken, Secaucus, Bayonne, Hackensack, Paramus, Fair Lawn, Ridgewood, Fort Lee, Teaneck, Englewood, Elizabeth, Union, Westfield, Summit, Morristown, Parsippany, Manhattan, Brooklyn, Queens, the Bronx, Staten Island, Nyack, Suffern, Easton, Bethlehem and Allentown.</p>
     </div>
     <div style="position:relative;padding:14px;background:rgba(0,0,0,.4);border:1px solid rgba(226,184,102,.22)">
       <iframe title="Stone Elegance service area map" src="https://www.google.com/maps?q=Clifton,+New+Jersey&amp;output=embed" loading="lazy" style="display:block;width:100%;height:clamp(300px,42vh,430px);border:0;filter:grayscale(.4) contrast(1.05)"></iframe>
@@ -668,12 +776,23 @@
       </div>
     </div>
     <div>
+      <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E2B866">Countertops</div>
+      <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:14px">
+        <a href="/granite-countertops/" style="color:rgba(244,242,238,.82)">Granite countertops</a>
+        <a href="/quartz-countertops/" style="color:rgba(244,242,238,.82)">Quartz countertops</a>
+        <a href="/marble-countertops/" style="color:rgba(244,242,238,.82)">Marble countertops</a>
+        <a href="/quartzite-countertops/" style="color:rgba(244,242,238,.82)">Quartzite countertops</a>
+        <a href="#materials" style="color:rgba(244,242,238,.82)">Backsplashes, sinks &amp; edges</a>
+      </div>
+    </div>
+    <div>
       <div style="font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:#E2B866">Navigate</div>
       <div style="display:flex;flex-direction:column;gap:11px;margin-top:18px;font-size:14px">
         <a href="#about" style="color:rgba(244,242,238,.82)">About</a>
         <a href="#materials" style="color:rgba(244,242,238,.82)">Services</a>
         <a href="#process" style="color:rgba(244,242,238,.82)">Process</a>
         <a href="#portfolio" style="color:rgba(244,242,238,.82)">Portfolio</a>
+        <a href="#areas" style="color:rgba(244,242,238,.82)">Areas we serve</a>
         <a href="#faq" style="color:rgba(244,242,238,.82)">FAQ</a>
       </div>
     </div>
@@ -695,6 +814,7 @@
     <div style="max-width:1200px;margin:0 auto;padding:20px clamp(20px,5vw,64px);display:flex;justify-content:space-between;gap:18px;flex-wrap:wrap;font-size:12px;color:#8B8A80">
       <span>© 2026 Stone Elegance Marble &amp; Granite. All rights reserved.</span>
       <span>Licensed &amp; insured · NJ · NY · PA</span>
+      <span style="display:flex;gap:16px;flex-wrap:wrap"><a href="/privacy-policy/" style="color:#B3B1A6;border-bottom:1px solid rgba(179,177,166,.35);transition:color .3s,border-color .3s" style-hover="color:#E2B866;border-color:#E2B866">Privacy Policy</a><a href="/terms/" style="color:#B3B1A6;border-bottom:1px solid rgba(179,177,166,.35);transition:color .3s,border-color .3s" style-hover="color:#E2B866;border-color:#E2B866">Terms of Service</a></span>
       <span>Developed by <a href="https://eusouts.com/" target="_blank" rel="noopener" style="color:#B3B1A6;border-bottom:1px solid rgba(179,177,166,.35);transition:color .3s,border-color .3s" style-hover="color:#E2B866;border-color:#E2B866">Eu sou TS</a></span>
     </div>
   </div>

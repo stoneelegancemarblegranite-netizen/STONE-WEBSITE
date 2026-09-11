@@ -11,6 +11,15 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;800&family=Archivo:wght@400;600&display=swap" rel="stylesheet">
 
 <style>
+/* Cross-document page transitions — same opt-in as the rest of the site. */
+@view-transition{navigation:auto}
+::view-transition-old(root){animation:pageOut .26s cubic-bezier(.4,0,1,1) both;mix-blend-mode:normal}
+::view-transition-new(root){animation:pageIn .44s cubic-bezier(.22,.61,.36,1) both;mix-blend-mode:normal}
+@keyframes pageOut{from{opacity:1;transform:none}to{opacity:0;transform:translateY(-10px)}}
+@keyframes pageIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+@media (prefers-reduced-motion: reduce){
+::view-transition-old(root),::view-transition-new(root){animation-duration:.001ms}
+}
 :root{--quarry:#14171A;--chalk:#F2F0EC;--brass:#C8912F;--brass-soft:#E2B866;
 --moss:#4E5738;--moss-lift:#63704A;--line:rgba(242,240,236,.14)}
 *{box-sizing:border-box}
@@ -61,7 +70,10 @@ footer a:hover{color:var(--brass-soft);border-color:var(--brass-soft)}
     <p>The link may be old, or the address may have a typo in it. Everything about our countertops is on the main site &mdash; here are the sections people look for most.</p>
 
     <ul>
-      <li><a href="/#materials">Granite, quartz, marble &amp; quartzite</a></li>
+      <li><a href="/granite-countertops/">Granite countertops</a></li>
+<li><a href="/quartz-countertops/">Quartz countertops</a></li>
+<li><a href="/marble-countertops/">Marble countertops</a></li>
+<li><a href="/quartzite-countertops/">Quartzite countertops</a></li>
       <li><a href="/#portfolio">Recent installations</a></li>
       <li><a href="/#process">How the process works</a></li>
       <li><a href="/#areas">Areas we serve</a></li>
@@ -75,6 +87,7 @@ footer a:hover{color:var(--brass-soft);border-color:var(--brass-soft)}
 
 <footer>
   &copy; 2026 Stone Elegance Marble &amp; Granite &mdash; Clifton, New Jersey. Licensed &amp; insured in NJ, NY and PA.<br>
+  <a href="/privacy-policy/">Privacy Policy</a> &middot; <a href="/terms/">Terms of Service</a><br>
   Developed by <a href="https://eusouts.com/" target="_blank" rel="noopener">Eu sou TS</a>
 </footer>
 
