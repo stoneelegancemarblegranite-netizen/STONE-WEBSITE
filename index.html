@@ -285,9 +285,6 @@
     #reviews > div:first-child{align-items:center!important;text-align:center!important}
     #reviews > div:first-child h2{text-align:center!important}
     #reviews > div:first-child span{justify-content:center!important}
-    #reviews .review-highlight-card{padding:24px 22px!important}
-    #reviews .review-highlight-card h3{font-size:20px!important}
-    #reviews .review-highlight-card p{font-size:14.5px!important;line-height:1.65!important}
     #reviews .reviews-cta-row{display:block!important;margin-top:34px!important}
     #reviews .reviews-cta-row > div{display:grid!important;grid-template-columns:1fr!important;gap:10px!important;margin-top:18px!important}
     #reviews .reviews-cta-row a{width:100%!important;justify-content:center!important;padding:15px 18px!important;font-size:11.5px!important;letter-spacing:.09em!important;text-align:center!important}
@@ -628,23 +625,10 @@
     <span data-reveal="" style="display:inline-flex;align-items:center;gap:.85em;font-weight:500;font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#8A5F18"><span style="width:3px;height:13px;background:currentColor"></span>Google review highlights</span>
     <h2 data-reveal="" data-delay="1" style="text-transform:capitalize;margin:0;font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:clamp(25px,3.3vw,42px);line-height:1.22;text-wrap:balance">The <span style="font-style:italic;font-weight:300;color:#8A5F18">go-to</span> installation team for homeowners, contractors &amp; real estate investors</h2>
   </div>
-  <div style="max-width:1200px;margin:0 auto;display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,280px),1fr));gap:24px">
-    <div class="review-highlight-card" data-reveal="" style="padding:28px 26px 24px;background:#FAF9F7;border:1px solid rgba(18,18,18,.12);transition:border-color .35s,background .35s,transform .35s" style-hover="border-color:rgba(78,87,56,.5);transform:translateY(-3px)">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#E6E3DD;color:#8A5F18;font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:12px;margin-bottom:18px">01</span>
-      <h3 style="margin:0 0 12px;font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.01em">Clean installation</h3>
-      <p style="margin:0;font-size:15.5px;line-height:1.75;color:rgba(23,17,14,.75)">Customers care about a neat job site, careful protection around cabinets and floors, and a finished kitchen that is ready to use without a stressful cleanup.</p>
-    </div>
-    <div class="review-highlight-card" data-reveal="" data-delay="1" style="padding:28px 26px 24px;background:#FAF9F7;border:1px solid rgba(18,18,18,.12);transition:border-color .35s,background .35s,transform .35s" style-hover="border-color:rgba(78,87,56,.5);transform:translateY(-3px)">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#E6E3DD;color:#8A5F18;font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:12px;margin-bottom:18px">02</span>
-      <h3 style="margin:0 0 12px;font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.01em">Clear communication</h3>
-      <p style="margin:0;font-size:15.5px;line-height:1.75;color:rgba(23,17,14,.75)">The strongest trust signal is simple: fast replies, straight scheduling, clear next steps, and no confusing surprises between measurement, fabrication and install.</p>
-    </div>
-    <div class="review-highlight-card" data-reveal="" data-delay="2" style="padding:28px 26px 24px;background:#FAF9F7;border:1px solid rgba(18,18,18,.12);transition:border-color .35s,background .35s,transform .35s" style-hover="border-color:rgba(78,87,56,.5);transform:translateY(-3px)">
-      <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:50%;background:#E6E3DD;color:#8A5F18;font-family:Montserrat,system-ui,sans-serif;font-weight:700;font-size:12px;margin-bottom:18px">03</span>
-      <h3 style="margin:0 0 12px;font-family:Montserrat,system-ui,sans-serif;font-weight:600;font-size:22px;line-height:1.2;letter-spacing:-.01em">Precise finish</h3>
-      <p style="margin:0;font-size:15.5px;line-height:1.75;color:rgba(23,17,14,.75)">For stone work, the visual proof is in tight measurements, polished edges, aligned details, durable materials and a result that feels built for the room.</p>
-    </div>
-  </div>
+  <!-- Trustindex Google reviews widget. The loader is injected here by componentDidMount
+       (a <script> in the template would never run — React refuses to execute them), and
+       it renders the widget right after its own tag, so it lands inside this box. -->
+  <div ref="{{ reviewsWidgetRef }}" style="max-width:1200px;margin:0 auto;min-height:120px"></div>
   <div class="reviews-cta-row" style="max-width:1200px;margin:44px auto 0;display:flex;align-items:center;justify-content:center;gap:20px;flex-wrap:wrap;text-align:center">
     <div style="display:flex;align-items:center;justify-content:center;gap:12px;flex-wrap:wrap">
       <a href="#contact" style="display:inline-flex;align-items:center;gap:.7em;padding:18px 32px;background:#4E5738;color:#F4F2EE;font-size:13px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;transition:background .4s,transform .45s" style-hover="background:#63704A;color:#FFF;transform:translateY(-2px)">Partner with us on your next project <span style="font-size:15px;line-height:1">&rarr;</span></a>
@@ -837,6 +821,7 @@ class Component extends DCLogic {
   heroVideoRef = React.createRef();
   headerRef = React.createRef();
   logoRef = React.createRef();
+  reviewsWidgetRef = React.createRef();
 
   railRef = React.createRef();
 
@@ -977,6 +962,16 @@ class Component extends DCLogic {
       this._heroReady();
       hv.addEventListener('loadeddata', this._heroReady);
       hv.addEventListener('canplay', this._heroReady);
+    }
+
+    // Trustindex reviews widget — the loader inserts the widget after its own <script>
+    // tag, so the tag is appended inside the placeholder box in #reviews.
+    const rw = this.reviewsWidgetRef.current;
+    if (rw && !rw.querySelector('script[src*="cdn.trustindex.io"]')) {
+      const s = document.createElement('script');
+      s.src = 'https://cdn.trustindex.io/loader.js?a08ced381d67530165362bd6226';
+      s.defer = true; s.async = true;
+      rw.appendChild(s);
     }
 
     this._esc = (e) => { if (e.key === 'Escape') this.setState({ lightbox: null, mobileMenuOpen: false }); };
@@ -1237,6 +1232,7 @@ class Component extends DCLogic {
     document.body.style.overflowY = '';
     window.removeEventListener('keydown', this._esc);
     window.removeEventListener('scroll', this._scroll);
+    if (this.reviewsWidgetRef.current) this.reviewsWidgetRef.current.innerHTML = '';
     if (this._heroReady && this.heroVideoRef.current) {
       this.heroVideoRef.current.removeEventListener('loadeddata', this._heroReady);
       this.heroVideoRef.current.removeEventListener('canplay', this._heroReady);
@@ -1287,6 +1283,7 @@ class Component extends DCLogic {
         : null,
       videoRef: this.videoRef,
       heroVideoRef: this.heroVideoRef,
+      reviewsWidgetRef: this.reviewsWidgetRef,
       headerRef: this.headerRef,
       logoRef: this.logoRef,
       openLightbox: this.openLightbox,
