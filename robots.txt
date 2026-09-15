@@ -3,6 +3,10 @@
 User-agent: *
 Allow: /
 
+# Content Signals (contentsignals.org): let search engines and AI assistants
+# index and cite the site so it shows up in answers; opt out of model training.
+Content-Signal: search=yes, ai-input=yes, ai-train=no
+
 # Paid-traffic landing page and post-submit page: never in organic results.
 Disallow: /lp/
 Disallow: /thanks/

@@ -48,6 +48,13 @@ ErrorDocument 404 /404.html
   Header always set Permissions-Policy "geolocation=(), microphone=(), camera=(), interest-cohort=()"
   Header always set Cross-Origin-Opener-Policy "same-origin-allow-popups"
 
+  # Link headers (RFC 8288) so agents and crawlers can discover the site's
+  # resources without parsing HTML. Only IANA-registered relations, and only
+  # things that really exist — there is no API to advertise.
+  <FilesMatch "\.html$">
+    Header always set Link "<https://stonelegance.com/sitemap.xml>; rel=\"describedby\"; type=\"application/xml\", <https://stonelegance.com/privacy-policy/>; rel=\"privacy-policy\", <https://stonelegance.com/terms/>; rel=\"terms-of-service\", <https://stonelegance.com/site.webmanifest>; rel=\"manifest\""
+  </FilesMatch>
+
   # HSTS — only after HTTPS is confirmed working on the live domain.
   # Comment this out if the certificate is not issued yet.
   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
